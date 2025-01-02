@@ -17,25 +17,12 @@ public class MeepMeepTesting {
 
         myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-16, 60, Math.toRadians(90)))
                 .lineToY(24) // go to submersible, score first specimen
-                .setTangent(Math.toRadians(-15))
-                .lineToX(-50) // going to first sample
-                .setTangent(Math.toRadians(-90))
-                .lineToY(60) // going to drop off sample
-                .setTangent(Math.toRadians(78))
-                .lineToX(-56)
-                .setTangent(Math.toRadians(-90))
-                .lineToY(60)
-                .setTangent(Math.toRadians(78))
-                .lineToX(-62)
-                .setTangent(Math.toRadians(-90))
-                .splineToConstantHeading(new Vector2d(-48, 60), Math.toRadians(-60))
-                .splineToConstantHeading(new Vector2d(-12, 24), Math.toRadians(-45))
-                .splineToConstantHeading(new Vector2d(-48, 60), Math.toRadians(45))
-                .splineToConstantHeading(new Vector2d(-10, 24), Math.toRadians(-45))
-                .splineToConstantHeading(new Vector2d(-48, 60), Math.toRadians(45))
-                .splineToConstantHeading(new Vector2d(-8, 24), Math.toRadians(-45))
-                .splineToConstantHeading(new Vector2d(-48, 60), Math.toRadians(45))
-                .splineToConstantHeading(new Vector2d(-6, 24), Math.toRadians(-45))
+                .strafeTo(new Vector2d(-50, 32))
+                .strafeTo(new Vector2d(-50, 60))
+                .strafeTo(new Vector2d(-58, 32))
+                .strafeTo(new Vector2d(-50, 60))
+                .strafeTo(new Vector2d(-66, 32))
+                .strafeTo(new Vector2d(-50, 60))
                 .build());
 
         meepMeep.setBackground(MeepMeep.Background.FIELD_INTO_THE_DEEP_OFFICIAL)
@@ -45,3 +32,23 @@ public class MeepMeepTesting {
                 .start();
     }
 }
+
+//                .setTangent(Math.toRadians(-15))
+//        .lineToX(-50) // going to first sample
+//                .setTangent(Math.toRadians(-90))
+//        .lineToY(60) // going to drop off sample
+//                .setTangent(Math.toRadians(78))
+//        .lineToX(-56)
+//                .setTangent(Math.toRadians(-90))
+//        .lineToY(60)
+//                .setTangent(Math.toRadians(78))
+//        .lineToX(-62)
+//                .setTangent(Math.toRadians(-90))
+//        .splineToConstantHeading(new Vector2d(-48, 60), Math.toRadians(-60))
+//        .splineToConstantHeading(new Vector2d(-12, 24), Math.toRadians(-45))
+//        .splineToConstantHeading(new Vector2d(-48, 60), Math.toRadians(45))
+//        .splineToConstantHeading(new Vector2d(-10, 24), Math.toRadians(-45))
+//        .splineToConstantHeading(new Vector2d(-48, 60), Math.toRadians(45))
+//        .splineToConstantHeading(new Vector2d(-8, 24), Math.toRadians(-45))
+//        .splineToConstantHeading(new Vector2d(-48, 60), Math.toRadians(45))
+//        .splineToConstantHeading(new Vector2d(-6, 24), Math.toRadians(-45))
