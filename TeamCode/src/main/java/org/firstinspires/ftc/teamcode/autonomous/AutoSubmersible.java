@@ -64,7 +64,28 @@ public class AutoSubmersible extends LinearOpMode {
                 .strafeTo(dropOff);
 
 
-        // part 2: hanging all the blocks (not done)
+        // part 2: hanging all the blocks
+
+        TrajectoryActionBuilder traj8 = drive.actionBuilder(dropOffPose)
+                .strafeTo(new Vector2d(-12, 24));
+
+        TrajectoryActionBuilder traj9 = drive.actionBuilder(new Pose2d(-12, 24, Math.toRadians(90)))
+                .strafeTo(dropOff);
+
+        TrajectoryActionBuilder traj10 = drive.actionBuilder(dropOffPose)
+                .strafeTo(new Vector2d(-8, 24));
+
+        TrajectoryActionBuilder traj11 = drive.actionBuilder(new Pose2d(-8, 24, Math.toRadians(90)))
+                .strafeTo(dropOff);
+
+        TrajectoryActionBuilder traj12 = drive.actionBuilder(dropOffPose)
+                .strafeTo(new Vector2d(-4, 24));
+
+        TrajectoryActionBuilder traj13 = drive.actionBuilder(new Pose2d(-4, 24, Math.toRadians(90)))
+                .strafeTo(dropOff);
+
+        TrajectoryActionBuilder traj14 = drive.actionBuilder(dropOffPose)
+                .strafeTo(new Vector2d(0, 24));
 
         if (isStopRequested()) return;
         waitForStart();
@@ -72,10 +93,12 @@ public class AutoSubmersible extends LinearOpMode {
         // hopefully this works and supplies power to the motor?
         while (opModeIsActive()) {
             lift.loop();
+            // havent used extend but could be useful when hanging specimens
+            extend.loop();
             // intake.loop() is not necessary bc not a pid
         }
 
-        // work on the actions a bit more first, they need tuning and stuff
+        // part 1
 
         Actions.runBlocking(
                 new SequentialAction(
@@ -88,7 +111,7 @@ public class AutoSubmersible extends LinearOpMode {
                     intake.IntakeForward(),
                     traj3.build(),
                     new SequentialAction(
-                            lift.LiftFirst(), // should rotate arm backward
+                            lift.LiftUp(), // should rotate arm backward
                             intake.IntakeReverse(),
                             lift.LiftDown()
                     ),
@@ -96,13 +119,36 @@ public class AutoSubmersible extends LinearOpMode {
                     intake.IntakeForward(), // again, could be for a fixed amt of time
                     traj5.build(),
                         new SequentialAction(
-                                lift.LiftFirst(), // should rotate arm backward
+                                lift.LiftUp(), // should rotate arm backward
                                 intake.IntakeReverse(),
                                 lift.LiftDown()
                         ),
                     traj6.build(),
                     intake.IntakeForward(),
-                    traj7.build()
+                    traj7.build(),
+                    intake.IntakeReverse()
+                )
+        );
+
+        // part 2 (didn't put all of them for now)
+        Actions.runBlocking(
+                new SequentialAction(
+                        new ParallelAction(
+                                lift.LiftUp(),
+                                traj8.build()
+                        ),
+                        intake.IntakeForward(),
+                        intake.IntakeReverse(),
+                        traj9.build(),
+                        lift.LiftDown(),
+                        new ParallelAction(
+                                lift.LiftUp(),
+                                traj10.build()
+                        ),
+                        intake.IntakeForward(),
+                        intake.IntakeReverse(),
+                        traj11.build(),
+                        lift.LiftDown()
                 )
         );
 

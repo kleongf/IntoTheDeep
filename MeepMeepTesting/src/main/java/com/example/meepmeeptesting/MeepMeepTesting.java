@@ -15,15 +15,29 @@ public class MeepMeepTesting {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .build();
 
+//        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(16, 60, Math.toRadians(90)))
+//                .strafeTo(new Vector2d(50, 32))
+//                .splineTo(new Vector2d(60, 60), Math.toRadians(90))
+//
+//                .strafeTo(new Vector2d(58, 32))
+//                        .turn(Math.toRadians(45))
+//                .strafeTo(new Vector2d(60, 60))
+//                        .strafeTo(new Vector2d(66, 32))
+//                        .strafeTo(new Vector2d(60, 60))
+//
+//// need to add more turns
+//
+//                .build());
         myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-16, 60, Math.toRadians(90)))
-                .lineToY(24) // go to submersible, score first specimen
+        .lineToY(24) // go to submersible, score first specimen
                 .strafeTo(new Vector2d(-50, 32))
-                .strafeTo(new Vector2d(-50, 60))
-                .strafeTo(new Vector2d(-58, 32))
-                .strafeTo(new Vector2d(-50, 60))
-                .strafeTo(new Vector2d(-66, 32))
-                .strafeTo(new Vector2d(-50, 60))
-                .build());
+        .strafeTo(new Vector2d(-50, 60))
+        .strafeTo(new Vector2d(-58, 32))
+        .strafeTo(new Vector2d(-50, 60))
+        .strafeTo(new Vector2d(-66, 32))
+        .strafeTo(new Vector2d(-50, 60))
+        .splineTo(new Vector2d(-12, 24), Math.toRadians(45))
+        .build());
 
         meepMeep.setBackground(MeepMeep.Background.FIELD_INTO_THE_DEEP_OFFICIAL)
                 .setDarkMode(true)
@@ -52,3 +66,14 @@ public class MeepMeepTesting {
 //        .splineToConstantHeading(new Vector2d(-8, 24), Math.toRadians(-45))
 //        .splineToConstantHeading(new Vector2d(-48, 60), Math.toRadians(45))
 //        .splineToConstantHeading(new Vector2d(-6, 24), Math.toRadians(-45))
+
+//myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-16, 60, Math.toRadians(90)))
+//        .lineToY(24) // go to submersible, score first specimen
+//                .strafeTo(new Vector2d(-50, 32))
+//        .strafeTo(new Vector2d(-50, 60))
+//        .strafeTo(new Vector2d(-58, 32))
+//        .strafeTo(new Vector2d(-50, 60))
+//        .strafeTo(new Vector2d(-66, 32))
+//        .strafeTo(new Vector2d(-50, 60))
+//        .splineTo(new Vector2d(-12, 24), Math.toRadians(45))
+//        .build());
