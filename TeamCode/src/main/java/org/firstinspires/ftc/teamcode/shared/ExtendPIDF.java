@@ -14,11 +14,13 @@ public class ExtendPIDF {
     public static int target = 0;
     // we dont care because there is no angle
 
-    private DcMotorEx extendMotor;
+    private DcMotorEx motorOne;
+    private DcMotorEx motorTwo;
 
-    public ExtendPIDF(DcMotorEx motor) {
+    public ExtendPIDF(DcMotorEx motorOne, DcMotorEx motorTwo) {
         controller = new PIDController(p, i, d);
-        extendMotor = motor;
+        this.motorOne = motorOne;
+        this.motorTwo = motorTwo;
     }
 
     public void setTarget(int t) {
@@ -27,13 +29,14 @@ public class ExtendPIDF {
 
     public void loop() {
         controller.setPID(p, i, d);
-        int armPos = extendMotor.getCurrentPosition();
+        int armPos = motorTwo.getCurrentPosition();
         double pid = controller.calculate(armPos, target);
         // we dont care about angle here either or feed forward, its already taken care of
         // double ff = Math.cos(Math.toRadians(target / ticksInDegree)) * f;
         double power = pid;
 
-        extendMotor.setPower(power);
+        // motorOne.setPower(power);
+        motorTwo.setPower(power); // motors that drive same gear will be flipped
     }
 
     public class ExtendFirst implements Action {
