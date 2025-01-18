@@ -29,14 +29,14 @@ public class ExtendPIDF {
 
     public void loop() {
         controller.setPID(p, i, d);
-        int armPos = motorTwo.getCurrentPosition();
+        int armPos = motorOne.getCurrentPosition();
         double pid = controller.calculate(armPos, target);
         // we dont care about angle here either or feed forward, its already taken care of
         // double ff = Math.cos(Math.toRadians(target / ticksInDegree)) * f;
         double power = pid;
 
-        // motorOne.setPower(power);
-        motorTwo.setPower(power); // motors that drive same gear will be flipped
+        motorOne.setPower(power);
+        motorTwo.setPower(-power); // motors that drive same gear will be flipped
     }
 
     public class ExtendFirst implements Action {
